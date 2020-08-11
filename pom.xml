@@ -13,7 +13,6 @@
         <junit.version>4.13</junit.version>
         <selenium-java.version>3.141.59</selenium-java.version>
         <wdm.version>4.1.0</wdm.version>
-        <saxon.version>9.5.1-8</saxon.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -53,12 +52,6 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${wdm.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.saxon</groupId>
-            <artifactId>Saxon-HE</artifactId>
-            <version>${saxon.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
