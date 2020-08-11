@@ -12,8 +12,8 @@
         <logback.version>1.2.3</logback.version>
         <junit.version>4.13</junit.version>
         <selenium-java.version>3.141.59</selenium-java.version>
-        <wdm.version>4.0.0</wdm.version>
-        <saxon.version>10.1</saxon.version>
+        <wdm.version>4.1.0</wdm.version>
+        <saxon.version>9.5.1-8</saxon.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
