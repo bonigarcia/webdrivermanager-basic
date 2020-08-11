@@ -39,7 +39,8 @@ public class ChromeTest {
 
     @BeforeClass
     public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().avoidResolutionCache().forceDownload()
+                .setup();
     }
 
     @Before
