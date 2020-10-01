@@ -56,11 +56,11 @@ public class FirefoxTest {
 
     @Test
     public void test() {
-        String sutUrl = "https://github.com/bonigarcia/webdrivermanager";
+        String sutUrl = "https://bonigarcia.github.io/selenium-jupiter/";
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
-        assertThat(title, containsString("Automatic management of Selenium"));
+        assertThat(title, containsString("JUnit 5 extension for Selenium"));
     }
 
 }
