@@ -116,7 +116,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 ## About
 
-WebDriverManager-Basic (Copyright &copy; 2020) is a personal project of [Boni Garcia] licensed under [Apache 2.0 License].
+WebDriverManager-Basic (Copyright &copy; 2020) is a project created and maintained by [Boni Garcia] licensed under [Apache 2.0 License].
 
 [Apache 2.0 License]: http://www.apache.org/licenses/LICENSE-2.0
 [Boni Garcia]: http://bonigarcia.github.io/
