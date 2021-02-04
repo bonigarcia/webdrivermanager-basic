@@ -27,7 +27,7 @@ In order to use WebDriverManager from tests in a Maven project, you need to add 
 
 ```
 dependencies {
-    testCompile("io.github.bonigarcia:webdrivermanager:4.3.1")
+    testImplementation("io.github.bonigarcia:webdrivermanager:4.3.1")
 }
 ```
 
