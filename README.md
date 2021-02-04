@@ -18,7 +18,7 @@ In order to use WebDriverManager from tests in a Maven project, you need to add 
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
     <artifactId>webdrivermanager</artifactId>
-    <version>4.2.2</version>
+    <version>4.3.1</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -27,7 +27,7 @@ In order to use WebDriverManager from tests in a Maven project, you need to add 
 
 ```
 dependencies {
-    testCompile("io.github.bonigarcia:webdrivermanager:4.2.2")
+    testCompile("io.github.bonigarcia:webdrivermanager:4.3.1")
 }
 ```
 
@@ -116,7 +116,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 ## About
 
-WebDriverManager-Basic (Copyright &copy; 2020) is a project created and maintained by [Boni Garcia] licensed under [Apache 2.0 License].
+WebDriverManager-Basic (Copyright &copy; 2020-2021) is a project created and maintained by [Boni Garcia] licensed under [Apache 2.0 License].
 
 [Apache 2.0 License]: http://www.apache.org/licenses/LICENSE-2.0
 [Boni Garcia]: http://bonigarcia.github.io/
