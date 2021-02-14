@@ -1,4 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.bonigarcia/webdrivermanager.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3Aio.github.bonigarcia%20a%3Awebdrivermanager)
+[![Build Status](https://github.com/bonigarcia/webdrivermanager-basic/workflows/build/badge.svg)](https://github.com/bonigarcia/webdrivermanager-basic/actions)
 [![badge-jdk](https://img.shields.io/badge/jdk-8-green.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![License badge](https://img.shields.io/badge/license-Apache2-green.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Backers on Open Collective](https://opencollective.com/webdrivermanager/backers/badge.svg)](#backers)
@@ -8,7 +9,7 @@
 
 # WebDriverManager Basic [![][Logo]][GitHub Repository]
 
-This repository contains a basic project with JUnit tests using [Selenium Webdriver] and [WebDriverManager]. This code is open source, released under the terms of [Apache 2.0 License].
+This repository contains a basic project with JUnit tests using [Selenium WebDriver] and [WebDriverManager]. This code is open source, released under the terms of [Apache 2.0 License].
 
 ## Usage
 
@@ -18,7 +19,7 @@ In order to use WebDriverManager from tests in a Maven project, you need to add 
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
     <artifactId>webdrivermanager</artifactId>
-    <version>4.3.1</version>
+    <version>${wdm.version}</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -27,7 +28,7 @@ In order to use WebDriverManager from tests in a Maven project, you need to add 
 
 ```
 dependencies {
-    testImplementation("io.github.bonigarcia:webdrivermanager:4.3.1")
+    testImplementation("io.github.bonigarcia:webdrivermanager:${wdm.version}")
 }
 ```
 
@@ -116,11 +117,11 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 ## About
 
-WebDriverManager-Basic (Copyright &copy; 2020-2021) is a project created and maintained by [Boni Garcia] licensed under [Apache 2.0 License].
+WebDriverManager (Copyright &copy; 2015-2021) is a project created and maintained by [Boni Garcia] licensed under [Apache 2.0 License].
 
 [Apache 2.0 License]: http://www.apache.org/licenses/LICENSE-2.0
 [Boni Garcia]: http://bonigarcia.github.io/
-[Selenium Webdriver]: http://docs.seleniumhq.org/projects/webdriver/
+[Selenium WebDriver]: http://docs.seleniumhq.org/projects/webdriver/
 [WebDriverManager]:https://github.com/bonigarcia/webdrivermanager/
 [Logo]: http://bonigarcia.github.io/img/webdrivermanager.png
 [GitHub Repository]: https://github.com/bonigarcia/webdrivermanager-basic
