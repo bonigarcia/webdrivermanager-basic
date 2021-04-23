@@ -13,7 +13,7 @@
 
         <junit.version>4.13.2</junit.version>
         <selenium-java.version>3.141.59</selenium-java.version>
-        <wdm.version>4.4.0</wdm.version>
+        <wdm.version>4.4.1</wdm.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
