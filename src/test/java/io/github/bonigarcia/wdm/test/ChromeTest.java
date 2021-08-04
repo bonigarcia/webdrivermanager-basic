@@ -56,11 +56,11 @@ public class ChromeTest {
 
     @Test
     public void test() {
-        String sutUrl = "https://bonigarcia.github.io/selenium-jupiter/";
+        String sutUrl = "https://bonigarcia.org/webdrivermanager/";
         driver.get(sutUrl);
         String title = driver.getTitle();
         log.debug("The title of {} is {}", sutUrl, title);
-        assertThat(title, containsString("JUnit 5 extension for Selenium"));
+        assertThat(title, containsString("WebDriverManager"));
     }
 
 }
