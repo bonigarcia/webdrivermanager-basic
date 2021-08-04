@@ -49,9 +49,7 @@ public class FirefoxTest {
 
     @After
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 
     @Test
