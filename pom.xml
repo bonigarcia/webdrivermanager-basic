@@ -8,8 +8,8 @@
     <version>4.1.0</version>
 
     <properties>
-        <slf4j.version>1.7.30</slf4j.version>
-        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <logback.version>1.2.5</logback.version>
 
         <junit.version>4.13.2</junit.version>
         <selenium-java.version>3.141.59</selenium-java.version>
