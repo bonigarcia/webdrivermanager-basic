@@ -1,6 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.bonigarcia/webdrivermanager.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3Aio.github.bonigarcia%20a%3Awebdrivermanager)
 [![Build Status](https://github.com/bonigarcia/webdrivermanager-basic/workflows/build/badge.svg)](https://github.com/bonigarcia/webdrivermanager-basic/actions)
-[![badge-jdk](https://img.shields.io/badge/jdk-8-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![badge-jdk](https://img.shields.io/badge/jdk-11-green.svg)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![License badge](https://img.shields.io/badge/license-Apache2-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Backers on Open Collective](https://opencollective.com/webdrivermanager/backers/badge.svg)](#backers)
 [![Sponsors on Open Collective](https://opencollective.com/webdrivermanager/sponsors/badge.svg)](#sponsors)
@@ -13,7 +13,7 @@ This repository contains a basic project with JUnit tests using [Selenium WebDri
 
 ## Usage
 
-In order to use WebDriverManager from tests in a Maven project, you need to add the following dependency in your `pom.xml` (Java 8 or upper required):
+In order to use WebDriverManager from tests in a Maven project, you need to add the following dependency in your `pom.xml`:
 
 ```xml
 <dependency>
@@ -35,31 +35,29 @@ dependencies {
 Then you can let WebDriverManager to do manage WebDriver binaries for your application/test. For example, as a JUnit test using Chrome browser:
 
 ```java
-public class ChromeTest {
+class ChromeTest {
 
-	private WebDriver driver;
+    WebDriver driver;
 
-	@BeforeClass
-	public static void setupClass() {
-		WebDriverManager.chromedriver().setup();
-	}
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
-	@Before
-	public void setupTest() {
-		driver = new ChromeDriver();
-	}
+    @BeforeEach
+    void setup() {
+        driver = new ChromeDriver();
+    }
 
-	@After
-	public void teardown() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
 
-	@Test
-	public void test() {
-		// Your test code here
-	}
+    @Test
+    void test() {
+        // Your test code here
+    }
 
 }
 ```
@@ -69,29 +67,27 @@ public class ChromeTest {
 ```java
 public class FirefoxTest {
 
-	private WebDriver driver;
+    WebDriver driver;
 
-	@BeforeClass
-	public static void setupClass() {
-		WebDriverManager.firefoxdriver().setup();
-	}
+    @BeforeAll
+    static void setupClass() {
+        WebDriverManager.firefoxdriver().setup();
+    }
 
-	@Before
-	public void setupTest() {
-		driver = new FirefoxDriver();
-	}
+    @BeforeEach
+    void setup() {
+        driver = new FirefoxDriver();
+    }
 
-	@After
-	public void teardown() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
 
-	@Test
-	public void test() {
-		// Your test code here
-	}
+    @Test
+    void test() {
+        // Your test code here
+    }
 
 }
 ```
