@@ -8,14 +8,19 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        java: [ 1.8 ]
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
     - name: Set up Java
       uses: actions/setup-java@v1
       with:
-        java-version: 1.8
+        distribution: 'adopt'
+        java-version: ${{ matrix.java }}
     - name: Start Xvfb
       run: Xvfb :99 &
     - name: Run tests
