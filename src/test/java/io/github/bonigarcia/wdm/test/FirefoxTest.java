@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class FirefoxTest {
+class FirefoxTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
