@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch5.caps.geolocation;
+package io.github.bonigarcia.test.geolocation;
 
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +37,7 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class GeolocationFirefoxJupiterTest {
+class GeolocationFirefoxTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
