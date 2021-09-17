@@ -61,9 +61,10 @@ class Geolocation2ChromeJupiterTest {
     }
 
     @Test
-    void testGeolocation() {
+    void testGeolocation() throws InterruptedException {
         driver.get("https://www.w3schools.com/html/html5_geolocation.asp");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.findElement(By.id("accept-choices")).click();
         driver.findElement(By.cssSelector("#main > p:nth-child(10) > button"))
                 .click();
