@@ -50,15 +50,7 @@ class GeolocationChromeTest {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
-        prefs.put("profile.default_content_setting_values.notifications", 1);
-        prefs.put("profile.managed_default_content_settings.geolocation", 1);
         options.setExperimentalOption("prefs", prefs);
-
-        options.addArguments("--incognito");
-        options.addArguments("--disable-infobars");
-        options.addArguments("start-maximized");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--disable-popup-blocking");
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
