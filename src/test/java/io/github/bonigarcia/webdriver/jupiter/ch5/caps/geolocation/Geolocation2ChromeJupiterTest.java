@@ -16,7 +16,8 @@
  */
 package io.github.bonigarcia.webdriver.jupiter.ch5.caps.geolocation;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -26,15 +27,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 class Geolocation2ChromeJupiterTest {
+
+    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
@@ -59,15 +62,17 @@ class Geolocation2ChromeJupiterTest {
 
     @Test
     void testGeolocation() {
-        driver.get(
-                "https://bonigarcia.dev/selenium-webdriver-java/geolocation.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.get("https://www.w3schools.com/html/html5_geolocation.asp");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.findElement(By.id("accept-choices")).click();
+        driver.findElement(By.cssSelector("#main > p:nth-child(10) > button"))
+                .click();
 
-        driver.findElement(By.id("get-coordinates")).click();
-        WebElement coordinates = driver.findElement(By.id("coordinates"));
-        wait.until(ExpectedConditions.visibilityOf(coordinates));
-        assertThat(coordinates.getText()).contains("Latitude")
-                .contains("Longitude");
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        String screenshot = ts.getScreenshotAs(OutputType.BASE64);
+        log.debug("Screenshot in base64 "
+                + "(you can copy and paste it into a browser navigation bar to watch it)\n"
+                + "data:image/png;base64,{}", screenshot);
     }
 
 }

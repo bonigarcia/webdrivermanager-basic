@@ -17,6 +17,7 @@
 package io.github.bonigarcia.webdriver.jupiter.ch5.caps.geolocation;
 
 import static java.lang.invoke.MethodHandles.lookup;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
@@ -49,33 +50,38 @@ class GeolocationChromeJupiterTest {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
+
         options.setExperimentalOption("prefs", prefs);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterEach
-    void teardown() {
+    void teardown() throws InterruptedException {
+        // FIXME: pause for manual browser inspection
+        Thread.sleep(Duration.ofSeconds(3).toMillis());
+
         driver.quit();
     }
 
     @Test
-    void testGeolocation() throws InterruptedException {
-        driver.get("https://the-internet.herokuapp.com/geolocation");
-        driver.findElement(By.xpath("//*[@id='content']/div/button")).click();
+    void testGeolocation() {
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/geolocation.html");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
+        driver.findElement(By.id("get-coordinates")).click();
+
+        WebElement coordinates = driver.findElement(By.id("coordinates"));
+        wait.until(ExpectedConditions.visibilityOf(coordinates));
 
         TakesScreenshot ts = (TakesScreenshot) driver;
         String screenshot = ts.getScreenshotAs(OutputType.BASE64);
         log.debug("Screenshot in base64 "
                 + "(you can copy and paste it into a browser navigation bar to watch it)\n"
                 + "data:image/png;base64,{}", screenshot);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement coordinates = driver.findElement(By.id("demo"));
-        wait.until(ExpectedConditions.textToBePresentInElement(coordinates,
-                "Latitude"));
+        assertThat(coordinates.getText()).contains("Latitude")
+                .contains("Longitude");
     }
 
 }
