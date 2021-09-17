@@ -42,7 +42,11 @@ class GeolocationChromeJupiterTest {
     void setup() {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
+        prefs.put("googlegeolocationaccess.enabled", true);
         prefs.put("profile.default_content_setting_values.geolocation", 1);
+        prefs.put("profile.default_content_setting_values.notifications", 1);
+        prefs.put("profile.managed_default_content_settings", 1);
+
         options.setExperimentalOption("prefs", prefs);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
