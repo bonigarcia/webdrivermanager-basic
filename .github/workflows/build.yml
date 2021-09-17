@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  DISPLAY: :99
+  WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -25,5 +29,3 @@ jobs:
       run: Xvfb :99 &
     - name: Run tests
       run: mvn -B test
-      env:
-        DISPLAY: :99
