@@ -49,38 +49,30 @@ class GeolocationChromeJupiterTest {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
-
         options.setExperimentalOption("prefs", prefs);
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
     @Test
     void testGeolocation() throws InterruptedException {
         driver.get("https://the-internet.herokuapp.com/geolocation");
-
-        driver.findElement(By.id("get-coordinates")).click();
+        driver.findElement(By.xpath("//*[@id='content']/div/button")).click();
 
         Thread.sleep(Duration.ofSeconds(3).toMillis());
 
         TakesScreenshot ts = (TakesScreenshot) driver;
-
         String screenshot = ts.getScreenshotAs(OutputType.BASE64);
         log.debug("Screenshot in base64 "
                 + "(you can copy and paste it into a browser navigation bar to watch it)\n"
                 + "data:image/png;base64,{}", screenshot);
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        driver.findElement(By.xpath("//*[@id='content']/div/button")).click();
         WebElement coordinates = driver.findElement(By.id("demo"));
         wait.until(ExpectedConditions.textToBePresentInElement(coordinates,
                 "Latitude"));
