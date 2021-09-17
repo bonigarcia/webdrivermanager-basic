@@ -41,11 +41,20 @@ class GeolocationChromeJupiterTest {
     @BeforeEach
     void setup() {
         ChromeOptions options = new ChromeOptions();
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("googlegeolocationaccess.enabled", true);
-        prefs.put("profile.default_content_setting_values.geolocation", 1);
-        prefs.put("profile.default_content_setting_values.notifications", 1);
-        prefs.put("profile.managed_default_content_settings", 1);
+
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        Map<String, Object> profile = new HashMap<String, Object>();
+        Map<String, Object> contentSettings = new HashMap<String, Object>();
+
+        // SET CHROME OPTIONS
+        // 0 - Default, 1 - Allow, 2 - Block
+        contentSettings.put("geolocation", 1);
+        profile.put("managed_default_content_settings", contentSettings);
+        prefs.put("profile", profile);
+        options.setExperimentalOption("prefs", prefs);
+
+//        Map<String, Object> prefs = new HashMap<>();
+//        prefs.put("profile.default_content_setting_values.geolocation", 1);
 
         options.setExperimentalOption("prefs", prefs);
 
