@@ -14,45 +14,57 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.webdriver.jupiter.ch5.caps.geolocation;
+package io.github.bonigarcia.test.geolocation;
 
+import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class GeolocationFirefoxJupiterTest {
+class GeolocationChromeTest {
+
+    static final Logger log = getLogger(lookup().lookupClass());
 
     WebDriver driver;
 
     @BeforeEach
     void setup() {
-        FirefoxOptions options = new FirefoxOptions();
-        options.addPreference("geo.enabled", true);
-        options.addPreference("geo.provider.use_corelocation", true);
-        options.addPreference("geo.prompt.testing", true);
-        options.addPreference("geo.prompt.testing.allow", true);
+        ChromeOptions options = new ChromeOptions();
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.default_content_setting_values.geolocation", 1);
+        prefs.put("profile.default_content_setting_values.notifications", 1);
+        prefs.put("profile.managed_default_content_settings.geolocation", 1);
+        options.setExperimentalOption("prefs", prefs);
 
-        driver = WebDriverManager.firefoxdriver().capabilities(options)
-                .create();
+        options.addArguments("--incognito");
+        options.addArguments("--disable-infobars");
+        options.addArguments("start-maximized");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-popup-blocking");
+
+        driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
 
     @AfterEach
-    void teardown() throws InterruptedException {
-        // FIXME: pause for manual browser inspection
-        Thread.sleep(Duration.ofSeconds(3).toMillis());
-
+    void teardown() {
         driver.quit();
     }
 
@@ -60,11 +72,18 @@ class GeolocationFirefoxJupiterTest {
     void testGeolocation() {
         driver.get(
                 "https://bonigarcia.dev/selenium-webdriver-java/geolocation.html");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         driver.findElement(By.id("get-coordinates")).click();
+
         WebElement coordinates = driver.findElement(By.id("coordinates"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(coordinates));
+
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        String screenshot = ts.getScreenshotAs(OutputType.BASE64);
+        log.debug("Screenshot in base64 "
+                + "(you can copy and paste it into a browser navigation bar to watch it)\n"
+                + "data:image/png;base64,{}", screenshot);
+
         assertThat(coordinates.getText()).contains("Latitude")
                 .contains("Longitude");
     }
