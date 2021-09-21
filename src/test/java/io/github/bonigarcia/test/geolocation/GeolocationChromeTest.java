@@ -51,6 +51,7 @@ class GeolocationChromeTest {
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
         options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--deny-permission-prompts");
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
