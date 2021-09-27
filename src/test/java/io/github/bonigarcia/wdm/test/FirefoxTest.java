@@ -47,6 +47,7 @@ class FirefoxTest {
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
         options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+        options.addPreference("toolkit.asyncshutdown.log", true);
         driver = new FirefoxDriver(options);
     }
 
