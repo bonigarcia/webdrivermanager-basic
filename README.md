@@ -65,7 +65,7 @@ class ChromeTest {
 ... and using Firefox:
 
 ```java
-public class FirefoxTest {
+class FirefoxTest {
 
     WebDriver driver;
 
