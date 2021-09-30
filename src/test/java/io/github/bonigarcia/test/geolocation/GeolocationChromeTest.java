@@ -26,7 +26,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -40,7 +39,6 @@ import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Disabled
 class GeolocationChromeTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
@@ -52,8 +50,6 @@ class GeolocationChromeTest {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.geolocation", 1);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--deny-permission-prompts");
 
         driver = WebDriverManager.chromedriver().capabilities(options).create();
     }
