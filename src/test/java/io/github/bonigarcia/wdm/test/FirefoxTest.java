@@ -52,7 +52,6 @@ class FirefoxTest {
         } else {
             WebDriverManager.firefoxdriver().setup();
         }
-
     }
 
     @BeforeEach
