@@ -56,7 +56,7 @@ class RepeatedFirefoxTest {
         driver.quit();
     }
 
-    @RepeatedTest(20)
+    @RepeatedTest(40)
     void test() {
         String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
         driver.get(sutUrl);
