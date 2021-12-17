@@ -31,3 +31,9 @@ jobs:
       run: Xvfb :99 &
     - name: Run tests
       run: mvn -B test
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: json-files
+        path: |
+          *.json
