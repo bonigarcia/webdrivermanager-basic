@@ -9,6 +9,8 @@ on:
 env:
   DISPLAY: :99
   WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
+  MOZ_PROFILER_STARTUP: 1
+  MOZ_PROFILER_SHUTDOWN: geckodriver-profile.json
 
 jobs:
   build:
