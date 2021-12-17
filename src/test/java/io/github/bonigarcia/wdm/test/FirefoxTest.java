@@ -17,11 +17,8 @@
 package io.github.bonigarcia.wdm.test;
 
 import static java.lang.invoke.MethodHandles.lookup;
-import static org.apache.commons.lang.SystemUtils.IS_OS_WINDOWS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
-
-import java.io.File;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,15 +40,7 @@ class FirefoxTest {
 
     @BeforeAll
     static void setupClass() {
-        // Using a custom geckodriver to test bug 1732076
-        // https://bugzilla.mozilla.org/show_bug.cgi?id=1732076
-        if (IS_OS_WINDOWS) {
-            File geckodriver = new File(FirefoxTest.class.getClassLoader()
-                    .getResource("geckodriver.exe").getFile());
-            System.setProperty("webdriver.gecko.driver", geckodriver.getPath());
-        } else {
-            WebDriverManager.firefoxdriver().setup();
-        }
+        WebDriverManager.firefoxdriver().setup();
     }
 
     @BeforeEach
