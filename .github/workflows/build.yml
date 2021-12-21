@@ -30,12 +30,11 @@ jobs:
     - name: Start Xvfb
       run: Xvfb :99 &
     - name: Run tests
-      run: |
-        mvn -B test
-        mkdir staging && cp *.json staging
+      run: mvn -B test
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
         name: json-files
-        path: staging
+        path: |
+          *.json
