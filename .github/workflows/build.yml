@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ windows-latest ]
         java: [ 8 ]
     steps:
     - name: Checkout GitHub repo
@@ -32,7 +32,6 @@ jobs:
     - name: Run tests
       run: mvn -B test
     - name: Archive production artifacts
-      if: matrix.os == 'windows-latest'
       uses: actions/upload-artifact@v2
       with:
         name: json-files
