@@ -32,7 +32,7 @@ dependencies {
 }
 ```
 
-Then you can let WebDriverManager to do manage WebDriver binaries for your application/test. For example, as a JUnit test using Chrome browser:
+Then you can let WebDriverManager to manage automatically the required drivers by Selenium WebDriver (e.g., chromedriver, geckodriver, etc.) for your application/test. For example, as a JUnit test using Chrome browser:
 
 ```java
 class ChromeTest {
