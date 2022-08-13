@@ -9,8 +9,6 @@ on:
 env:
   DISPLAY: :99
   WDM_GITHUBTOKEN: ${{ secrets.WDM_GITHUBTOKEN }}
-  MOZ_PROFILER_STARTUP: 1
-  MOZ_PROFILER_SHUTDOWN: geckodriver-profile.json
 
 jobs:
   build:
@@ -19,7 +17,6 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         java: [ 11 ]
-        firefox: [ 'latest', 'latest-beta', 'latest-devedition' ]
     steps:
     - name: Checkout GitHub repo
       uses: actions/checkout@v2
@@ -28,19 +25,7 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
-    - name: Setup firefox
-      uses: browser-actions/setup-firefox@latest
-      with:
-        firefox-version: ${{ matrix.firefox }}
-    - run: firefox --version
     - name: Start Xvfb
       run: Xvfb :99 &
     - name: Run tests
       run: mvn -B test
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v2
-      if: ${{ always() }}
-      with:
-        name: json-files
-        path: |
-          *.json
