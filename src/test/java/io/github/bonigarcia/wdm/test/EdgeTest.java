@@ -23,6 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -51,6 +52,7 @@ class EdgeTest {
         driver.quit();
     }
 
+    @Disabled
     @Test
     void test() {
         String sutUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
