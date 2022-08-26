@@ -14,8 +14,9 @@
  * limitations under the License.
  *
  */
-package io.github.bonigarcia.wdm.test;
+package io.github.bonigarcia.wdm.test.watch;
 
+//tag::snippet-in-doc[]
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -27,27 +28,19 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-class DisableCspFirefoxTest {
+class GatherLogsFirefoxTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriverManager wdm;
+    WebDriverManager wdm = WebDriverManager.firefoxdriver().watch();
     WebDriver driver;
 
     @BeforeEach
     void setup() {
-        FirefoxOptions options = new FirefoxOptions();
-        options.setLogLevel(FirefoxDriverLogLevel.TRACE);
-        options.addPreference("remote.log.truncate", false);
-
-        wdm = WebDriverManager.firefoxdriver().capabilities(options).watch()
-                .disableCsp();
         driver = wdm.create();
     }
 
@@ -58,9 +51,20 @@ class DisableCspFirefoxTest {
 
     @Test
     void test() {
-        driver.get("https://paypal.com/");
+        driver.get(
+                "https://bonigarcia.dev/selenium-webdriver-java/console-logs.html");
+
         List<Map<String, Object>> logMessages = wdm.getLogs();
-        assertThat(logMessages).isNotNull();
+
+        assertThat(logMessages).hasSize(5);
+
+        logMessages.forEach(map -> log.debug("[{}] [{}] {}",
+                map.get("datetime"),
+                String.format("%1$-14s",
+                        map.get("source").toString().toUpperCase() + "."
+                                + map.get("type").toString().toUpperCase()),
+                map.get("message")));
     }
 
 }
+//end::snippet-in-doc[]
