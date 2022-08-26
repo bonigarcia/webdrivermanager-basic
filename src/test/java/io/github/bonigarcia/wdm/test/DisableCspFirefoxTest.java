@@ -44,7 +44,7 @@ class DisableCspFirefoxTest {
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
         options.setLogLevel(FirefoxDriverLogLevel.TRACE);
-        options.addPreference("toolkit.asyncshutdown.log", true);
+        options.addPreference("remote.log.truncate", false);
 
         wdm = WebDriverManager.firefoxdriver().capabilities(options).watch()
                 .disableCsp();
