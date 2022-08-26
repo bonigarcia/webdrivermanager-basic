@@ -29,6 +29,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -37,11 +39,18 @@ class DisplayLogsFirefoxTest {
 
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriverManager wdm = WebDriverManager.firefoxdriver().watchAndDisplay();
+    WebDriverManager wdm;
     WebDriver driver;
 
     @BeforeEach
     void setup() {
+        FirefoxOptions options = new FirefoxOptions();
+        options.setLogLevel(FirefoxDriverLogLevel.TRACE);
+        options.addPreference("remote.log.truncate", false);
+
+        wdm = WebDriverManager.firefoxdriver().capabilities(options)
+                .watchAndDisplay().disableCsp();
+
         driver = wdm.create();
     }
 
