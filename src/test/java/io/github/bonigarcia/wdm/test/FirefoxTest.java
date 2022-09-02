@@ -48,6 +48,7 @@ class FirefoxTest {
         FirefoxOptions options = new FirefoxOptions();
         options.setLogLevel(FirefoxDriverLogLevel.TRACE);
         options.addPreference("remote.log.truncate", false);
+        options.addPreference("extensions.logging.enabled", true);
         driver = new FirefoxDriver(options);
     }
 
