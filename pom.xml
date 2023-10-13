@@ -13,7 +13,7 @@
 
         <junit.version>5.10.0</junit.version>
         <assertj.version>3.24.2</assertj.version>
-        <selenium-java.version>4.14.0</selenium-java.version>
+        <selenium-java.version>4.14.1</selenium-java.version>
         <wdm.version>5.5.3</wdm.version>
 
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
