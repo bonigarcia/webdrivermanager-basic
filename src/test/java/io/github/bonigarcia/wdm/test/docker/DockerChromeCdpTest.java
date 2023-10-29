@@ -20,6 +20,7 @@ import static io.github.bonigarcia.wdm.WebDriverManager.isDockerAvailable;
 import static java.lang.invoke.MethodHandles.lookup;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assumptions.assumeThat;
+import static org.junit.jupiter.api.condition.OS.LINUX;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.nio.file.Files;
@@ -33,7 +34,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.OS;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.devtools.DevTools;
@@ -76,7 +76,7 @@ class DockerChromeCdpTest {
         }
     }
 
-    @EnabledOnOs(OS.LINUX)
+    @EnabledOnOs(LINUX)
     @Test
     void test() throws Exception {
         driver.get(
